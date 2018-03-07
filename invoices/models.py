@@ -7,9 +7,13 @@ class InvoiceManager(models.Manager):
     """ Manager for invoice
     """
     def count_due_date(self):
+        """ Count all invoice with due date
+        """
         return self.get_queryset().filter(due_date__lt=timezone.now().date()).count()
 
     def drafts(self):
+        """ Filter invoice with status draft
+        """
         return self.get_queryset().filter(status=Invoice.DRAFT)
 
 
@@ -51,14 +55,20 @@ class Invoice(models.Model):
         return f'{self.code}'
 
     def is_due(self):
+        """ Check invoice due date
+        """
         return timezone.now().date() > self.due_date.date()
 
     def total_amount(self):
+        """ Get total amount of all items in invoice
+        """
         if self.item_set.first():
             return self.item_set.first().amount()
         return 0
 
     def get_absolute_url(self):
+        """ Get invoice url
+        """
         return f'/invoice/{self.id}/'
 
 
@@ -77,4 +87,6 @@ class Item(models.Model):
         return f'{self.invoice}'
 
     def amount(self):
+        """ Get amount of an item
+        """
         return self.quantity*self.rate

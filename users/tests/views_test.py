@@ -50,7 +50,7 @@ class DashboardTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_invoice_empty(self):
-        """ Test 
+        """ Test empty invoice
         """
         response = self.client.get(reverse('dashboard'))
         self.assertEqual(response.context['invoices'].count(), 0)
