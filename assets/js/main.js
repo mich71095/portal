@@ -1,9 +1,27 @@
 $(document).ready(function () {
-	$('.selectpicker').selectpicker({
+	$('.selectpickerClient').selectpicker({
 	  liveSearchPlaceholder: 'Search Clients'
 	});
 
-	$('.datepicker').datepicker({
+    $('.selectpickerTerms').selectpicker({
+      liveSearchPlaceholder: 'Search Clients'
+    });
+
+    $('#invoiceDate').datepicker({
         uiLibrary: 'bootstrap4'
     });
+
+    $('#dueDate').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#profile').on('click', function(e) {
+        e.preventDefault();
+        $('#profile-side-bar').toggleClass('active');
+    });
+
+    $('.side-bar-toggle').on('click', function() {
+        $('#profile-side-bar').removeClass('active');
+    });
 });
+

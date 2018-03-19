@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import authenticate
 
+from users.models import User
+
 
 class LoginForm(forms.Form):
     """ Form for login user view
